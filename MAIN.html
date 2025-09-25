@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bongo Cat Simple Vers.</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+    #counter { font-size: 3em; margin: 20px; }
+  </style>
+</head>
+<body>
+  <h1>Bongo Cat Simple Vers.</h1>
+  <p>Press any key or click any mouse button.</p>
+  <div id="counter">0</div>
+
+  <script>
+    let count = 0;
+    const counterDisplay = document.getElementById('counter');
+
+    // Track pressed keys and mouse buttons
+    const pressedKeys = new Set();
+    const pressedMouseButtons = new Set();
+
+    document.addEventListener('keydown', function(event) {
+      if (!pressedKeys.has(event.code)) {
+        count++;
+        counterDisplay.textContent = count;
+        pressedKeys.add(event.code);
+      }
+    });
+
+    document.addEventListener('keyup', function(event) {
+      pressedKeys.delete(event.code);
+    });
+
+    document.addEventListener('mousedown', function(event) {
+      if (!pressedMouseButtons.has(event.button)) {
+        count++;
+        counterDisplay.textContent = count;
+        pressedMouseButtons.add(event.button);
+      }
+    });
+
+    document.addEventListener('mouseup', function(event) {
+      pressedMouseButtons.delete(event.button);
+    });
+  </script>
+</body>
+</html>
